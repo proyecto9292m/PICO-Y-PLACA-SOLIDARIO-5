@@ -24,16 +24,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
+<!-- Google tag (gtag.js) con Consent Mode v2 correcto -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18254896446"></script>
 <script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'AW-18254896446');
-gtag('consent', 'default', {
-  'ad_storage': 'denied',
-  'analytics_storage': 'denied'
-});
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  // 1) Primero el consentimiento por defecto (denegado)
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'ad_user_data': 'denied',
+    'ad_personalization': 'denied',
+    'analytics_storage': 'denied'
+  });
+  // 2) Después la configuración
+  gtag('js', new Date());
+  gtag('config', 'AW-18254896446');
 </script>
 
 <style>
@@ -190,17 +195,17 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
 <body>
 
 <div id="cookie-overlay" class="cookie-overlay visible"></div>
-<div id="aviso-cookies" class="cookie-banner visible" role="dialog" aria-modal="true">
+<div id="aviso-cookies" class="cookie-banner visible" role="dialog" aria-modal="true" aria-labelledby="cookie-titulo">
   <div class="cookie-modal">
-    <h2>Aviso de cookies</h2>
+    <h2 id="cookie-titulo">Aviso de cookies</h2>
     <p>Utilizamos cookies para mejorar tu experiencia, mostrar publicidad personalizada y analizar el tráfico de forma anónima.<br><br>Al aceptar, nos permites ofrecerte un contenido más relevante. Puedes rechazar las cookies no esenciales en cualquier momento.</p>
     <div class="cookie-actions">
-      <button class="boton rechazar" id="btn-rechazar-cookies">Rechazar</button>
-      <button class="boton aceptar" id="btn-aceptar-cookies">Aceptar cookies</button>
+      <button class="boton rechazar" id="btn-rechazar-cookies" type="button">Rechazar</button>
+      <button class="boton aceptar" id="btn-aceptar-cookies" type="button">Aceptar cookies</button>
     </div>
     <div class="cookie-enlaces">
-      <a href="privacidad.html" id="enlace-privacidad">Política de Privacidad</a> ·
-      <a href="politicas-cookies.html" id="enlace-cookies">Política de Cookies</a>
+      <a href="privacidad.html">Política de Privacidad</a> ·
+      <a href="politicas-cookies.html">Política de Cookies</a>
     </div>
   </div>
 </div>
@@ -213,7 +218,7 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
         <span class="logo-icono">🌳</span>
         <span>VíaFirme</span>
       </a>
-      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false">☰</button>
+      <button class="boton-menu" id="botonMenu" aria-label="Abrir menú" aria-expanded="false" type="button">☰</button>
       <ul class="menu" id="menu">
         <li><a href="index.html" class="activo">Inicio</a></li>
         <li><a href="#movilidad">Movilidad</a></li>
@@ -429,7 +434,7 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
         </div>
         <div style="border-radius:var(--radio); overflow:hidden;">
           <div style="border:1px solid var(--borde); border-radius:var(--radio-sm); margin-bottom:12px; background:#fff; overflow:hidden;">
-            <button style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" onclick="this.nextElementSibling.style.maxHeight = this.nextElementSibling.style.maxHeight ? null : this.nextElementSibling.scrollHeight + 'px'; this.classList.toggle('activo');">
+            <button type="button" style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" aria-expanded="false">
               ¿Esta página cobra por su contenido? <span style="float:right; font-size:1.4rem;">+</span>
             </button>
             <div style="max-height:0; overflow:hidden; transition:max-height 0.35s ease;">
@@ -437,7 +442,7 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
             </div>
           </div>
           <div style="border:1px solid var(--borde); border-radius:var(--radio-sm); margin-bottom:12px; background:#fff; overflow:hidden;">
-            <button style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" onclick="this.nextElementSibling.style.maxHeight = this.nextElementSibling.style.maxHeight ? null : this.nextElementSibling.scrollHeight + 'px'; this.classList.toggle('activo');">
+            <button type="button" style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" aria-expanded="false">
               ¿Quién financia este sitio? <span style="float:right; font-size:1.4rem;">+</span>
             </button>
             <div style="max-height:0; overflow:hidden; transition:max-height 0.35s ease;">
@@ -445,7 +450,7 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
             </div>
           </div>
           <div style="border:1px solid var(--borde); border-radius:var(--radio-sm); margin-bottom:12px; background:#fff; overflow:hidden;">
-            <button style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" onclick="this.nextElementSibling.style.maxHeight = this.nextElementSibling.style.maxHeight ? null : this.nextElementSibling.scrollHeight + 'px'; this.classList.toggle('activo');">
+            <button type="button" style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" aria-expanded="false">
               ¿La información reemplaza la normativa oficial? <span style="float:right; font-size:1.4rem;">+</span>
             </button>
             <div style="max-height:0; overflow:hidden; transition:max-height 0.35s ease;">
@@ -453,7 +458,7 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
             </div>
           </div>
           <div style="border:1px solid var(--borde); border-radius:var(--radio-sm); margin-bottom:12px; background:#fff; overflow:hidden;">
-            <button style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" onclick="this.nextElementSibling.style.maxHeight = this.nextElementSibling.style.maxHeight ? null : this.nextElementSibling.scrollHeight + 'px'; this.classList.toggle('activo');">
+            <button type="button" style="width:100%; text-align:left; background:#fff; border:none; padding:18px 24px; font-size:1rem; font-weight:700; color:var(--oliva); cursor:pointer; font-family:var(--fuente);" aria-expanded="false">
               ¿Usan cookies? <span style="float:right; font-size:1.4rem;">+</span>
             </button>
             <div style="max-height:0; overflow:hidden; transition:max-height 0.35s ease;">
@@ -502,87 +507,58 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
   'use strict';
 
   // ============================================================
-  //  CONFIGURACIÓN DEL MODO DE LOS BOTONES DE COOKIES
-  //  MODO 1: Comportamiento original (solo muestra/oculta la página)
-  //  MODO 2: Redirección a URL externa
+  //  BANNER DE COOKIES — comportamiento honesto y compatible
+  //  con las políticas de Google Ads (sin redirecciones ocultas)
   // ============================================================
-  var COOKIE_BUTTON_MODE = 2; // Cambia entre 1 y 2
-  var REDIRECT_URL = "https://rebrand.ly/picoplacadehoy"; // URL para el modo 2
 
-  // ----- ELEMENTOS DEL BANNER -----
   var overlay = document.getElementById('cookie-overlay');
   var banner = document.getElementById('aviso-cookies');
   var btnAceptar = document.getElementById('btn-aceptar-cookies');
   var btnRechazar = document.getElementById('btn-rechazar-cookies');
   var contenidoPrincipal = document.getElementById('contenidoPrincipal');
 
-  // Enlaces del banner
-  var enlacePrivacidad = document.getElementById('enlace-privacidad');
-  var enlaceCookies = document.getElementById('enlace-cookies');
-
   if(!overlay || !banner || !btnAceptar || !btnRechazar || !contenidoPrincipal){
-    console.error('Error: Elementos del banner de cookies no encontrados');
+    // Si falta algo, mostramos el contenido directamente para no romper la página
+    if(contenidoPrincipal){ contenidoPrincipal.classList.add('visible'); }
     return;
   }
 
-  overlay.classList.add('visible');
-  banner.classList.add('visible');
-  document.body.classList.add('cookie-locked');
+  // Si el usuario ya decidió antes, no mostramos el banner
+  var decisionPrevia = localStorage.getItem('vf_cookies_decision');
+  if(decisionPrevia === 'aceptado' || decisionPrevia === 'rechazado'){
+    overlay.classList.remove('visible');
+    banner.classList.remove('visible');
+    document.body.classList.remove('cookie-locked');
+    contenidoPrincipal.classList.add('visible');
+  } else {
+    overlay.classList.add('visible');
+    banner.classList.add('visible');
+    document.body.classList.add('cookie-locked');
+  }
 
-  // Muestra el contenido (MODO 1)
-  function mostrarContenido(){
+  function aplicarConsentimiento(aceptado){
+    // Actualiza Consent Mode v2 de Google
+    if(typeof gtag === 'function'){
+      gtag('consent', 'update', {
+        'ad_storage': aceptado ? 'granted' : 'denied',
+        'ad_user_data': aceptado ? 'granted' : 'denied',
+        'ad_personalization': aceptado ? 'granted' : 'denied',
+        'analytics_storage': aceptado ? 'granted' : 'denied'
+      });
+    }
+  }
+
+  function cerrarBanner(aceptado){
+    localStorage.setItem('vf_cookies_decision', aceptado ? 'aceptado' : 'rechazado');
+    aplicarConsentimiento(aceptado);
     overlay.classList.remove('visible');
     banner.classList.remove('visible');
     document.body.classList.remove('cookie-locked');
     contenidoPrincipal.classList.add('visible');
   }
 
-  // Redirige a una URL (MODO 2)
-  function redirectTo(url){
-    window.location.href = url;
-  }
-
-  // Manejo según el modo configurado
-  function handleCookieAction(aceptadas){
-    console.log('🍪 Acción:', aceptadas ? 'Aceptar' : 'Rechazar', '| Modo:', COOKIE_BUTTON_MODE);
-
-    if(COOKIE_BUTTON_MODE === 1){
-      mostrarContenido();
-      if(typeof gtag !== 'undefined'){
-        gtag('consent', 'update', {
-          'ad_storage': aceptadas ? 'granted' : 'denied',
-          'analytics_storage': aceptadas ? 'granted' : 'denied'
-        });
-      }
-      console.log('Cookies', aceptadas ? 'ACEPTADAS' : 'RECHAZADAS');
-    } else if(COOKIE_BUTTON_MODE === 2){
-      sessionStorage.setItem('cookiesAccepted', aceptadas ? 'true' : 'false');
-      redirectTo(REDIRECT_URL);
-    } else {
-      mostrarContenido();
-    }
-  }
-
-  // Eventos de los botones
-  btnAceptar.addEventListener('click', function(){ handleCookieAction(true); });
-  btnRechazar.addEventListener('click', function(){ handleCookieAction(false); });
-
-  // Manejo de los enlaces del banner
-  function handleBannerLinkClick(event){
-    if(COOKIE_BUTTON_MODE === 2){
-      event.preventDefault();
-      console.log('🔗 Enlace del banner clicado en modo 2. Redirigiendo...');
-      redirectTo(REDIRECT_URL);
-    }
-  }
-
-  if(enlacePrivacidad){ enlacePrivacidad.addEventListener('click', handleBannerLinkClick); }
-  if(enlaceCookies){ enlaceCookies.addEventListener('click', handleBannerLinkClick); }
-
-  // Verificar si ya se aceptó antes (MODO 2)
-  if(COOKIE_BUTTON_MODE === 2 && sessionStorage.getItem('cookiesAccepted') === 'true'){
-    redirectTo(REDIRECT_URL);
-  }
+  btnAceptar.addEventListener('click', function(){ cerrarBanner(true); });
+  btnRechazar.addEventListener('click', function(){ cerrarBanner(false); });
 
   // ----- MENÚ MÓVIL -----
   var botonMenu = document.getElementById('botonMenu');
@@ -599,6 +575,17 @@ p{ margin:0 0 1.1rem; color:var(--tinta-suave); }
       });
     });
   }
+
+  // ----- ACORDEÓN FAQ (reemplaza los onclick inline) -----
+  document.querySelectorAll('#faq button[aria-expanded]').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var panel = btn.nextElementSibling;
+      var abierto = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', abierto ? 'false' : 'true');
+      panel.style.maxHeight = abierto ? null : panel.scrollHeight + 'px';
+    });
+  });
+
 })();
 </script>
 </body>
